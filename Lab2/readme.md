@@ -1,3 +1,5 @@
+So far I only made the compulsory part of this lab.
+
 ## Requirements
 
 -   Java 17
