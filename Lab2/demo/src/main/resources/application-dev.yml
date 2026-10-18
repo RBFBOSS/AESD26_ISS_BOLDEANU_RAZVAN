@@ -1,0 +1,7 @@
+app:
+  environment: development
+  data:
+    path: classpath:data/dev.csv
+    format: csv
+  priority:
+    demo: dev-profile-value

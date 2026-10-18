@@ -1,0 +1,22 @@
+[
+  {
+    "id": 101,
+    "name": "Elena",
+    "department": "Operations"
+  },
+  {
+    "id": 102,
+    "name": "Radu",
+    "department": "Security"
+  },
+  {
+    "id": 103,
+    "name": "Maria",
+    "department": "Engineering"
+  },
+  {
+    "id": 104,
+    "name": "Vlad",
+    "department": "Support"
+  }
+]

@@ -1,0 +1,7 @@
+app:
+  environment: production
+  data:
+    path: classpath:data/prod.json
+    format: json
+  priority:
+    demo: prod-profile-value
