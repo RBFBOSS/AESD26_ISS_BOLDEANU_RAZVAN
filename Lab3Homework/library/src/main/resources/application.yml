@@ -1,0 +1,3 @@
+library:
+  borrowing-policy: roleBased
+  event-threshold: 3
