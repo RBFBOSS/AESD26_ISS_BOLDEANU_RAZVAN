@@ -1,18 +1,13 @@
 package com.example.delivery_system.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "depots")
-@Getter
-@Setter
-@NoArgsConstructor
 public class Depot {
 
     @Id
@@ -26,10 +21,42 @@ public class Depot {
     private String coordinates;
 
     @OneToMany(mappedBy = "depot")
+    @JsonIgnore
     private List<Vehicle> vehicles = new ArrayList<>();
+
+    public Depot() {
+    }
 
     public Depot(String name, String coordinates) {
         this.name = name;
         this.coordinates = coordinates;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 }

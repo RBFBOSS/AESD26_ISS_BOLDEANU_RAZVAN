@@ -11,19 +11,21 @@ import java.util.List;
 
 public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
-    // derived
+    // Derived query
     List<Vehicle> findByAvailableTrue();
 
-    // explicit JPQL
+    // Explicit JPQL query
     @Query("SELECT v FROM Vehicle v WHERE v.depot.name = :depotName")
     List<Vehicle> findVehiclesByDepotName(
-            @Param("depotName") String depotName);
+            @Param("depotName") String depotName
+    );
 
-    // transactional modifying
+    // Transactional modifying query
     @Modifying
     @Transactional
     @Query("UPDATE Vehicle v SET v.available = :available WHERE v.id = :id")
     int updateAvailability(
             @Param("id") Long id,
-            @Param("available") boolean available);
+            @Param("available") boolean available
+    );
 }

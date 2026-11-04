@@ -1,15 +1,10 @@
 package com.example.delivery_system.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "drivers")
-@Getter
-@Setter
-@NoArgsConstructor
 public class Driver {
 
     @Id
@@ -26,11 +21,51 @@ public class Driver {
     private String phone;
 
     @OneToOne(mappedBy = "driver")
+    @JsonIgnore
     private Vehicle vehicle;
+
+    public Driver() {
+    }
 
     public Driver(String name, String email, String phone) {
         this.name = name;
         this.email = email;
         this.phone = phone;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }

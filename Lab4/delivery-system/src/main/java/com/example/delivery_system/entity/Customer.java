@@ -1,18 +1,13 @@
 package com.example.delivery_system.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "customers")
-@Getter
-@Setter
-@NoArgsConstructor
 public class Customer {
 
     @Id
@@ -35,14 +30,75 @@ public class Customer {
     private String coordinates;
 
     @OneToMany(mappedBy = "customer")
+    @JsonIgnore
     private List<Delivery> deliveries = new ArrayList<>();
 
-    public Customer(String name, String email, String phone,
-                    String address, String coordinates) {
+    public Customer() {
+    }
+
+    public Customer(
+            String name,
+            String email,
+            String phone,
+            String address,
+            String coordinates) {
+
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
         this.coordinates = coordinates;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public List<Delivery> getDeliveries() {
+        return deliveries;
+    }
+
+    public void setDeliveries(List<Delivery> deliveries) {
+        this.deliveries = deliveries;
     }
 }

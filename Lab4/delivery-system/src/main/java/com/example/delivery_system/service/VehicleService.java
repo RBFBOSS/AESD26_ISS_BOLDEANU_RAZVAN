@@ -1,46 +1,121 @@
 package com.example.delivery_system.service;
 
+import com.example.delivery_system.dto.VehicleRequestDTO;
+import com.example.delivery_system.dto.VehicleResponseDTO;
+import com.example.delivery_system.entity.Depot;
 import com.example.delivery_system.entity.Vehicle;
+import com.example.delivery_system.exception.ResourceNotFoundException;
+import com.example.delivery_system.repository.DepotRepository;
 import com.example.delivery_system.repository.VehicleRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VehicleService {
 
-    private final VehicleRepository repository;
+    private final VehicleRepository vehicleRepository;
+    private final DepotRepository depotRepository;
 
-    public VehicleService(VehicleRepository repository) {
-        this.repository = repository;
+    public VehicleService(
+            VehicleRepository vehicleRepository,
+            DepotRepository depotRepository) {
+        this.vehicleRepository = vehicleRepository;
+        this.depotRepository = depotRepository;
     }
 
-    public List<Vehicle> findAll() {
-        return repository.findAll();
+    private VehicleResponseDTO toDTO(Vehicle vehicle) {
+        return new VehicleResponseDTO(
+                vehicle.getId(),
+                vehicle.getName(),
+                vehicle.getCapacity(),
+                vehicle.getAvailable(),
+                vehicle.getDepot().getId()
+        );
     }
 
-    public Optional<Vehicle> findById(Long id) {
-        return repository.findById(id);
+    private Vehicle getVehicle(Long id) {
+        return vehicleRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Vehicle not found: " + id));
     }
 
-    public List<Vehicle> findAvailableVehicles() {
-        return repository.findByAvailableTrue();
+    public List<VehicleResponseDTO> findAll() {
+        return vehicleRepository.findAll()
+                .stream()
+                .map(this::toDTO)
+                .toList();
     }
 
-    public List<Vehicle> findByDepotName(String depotName) {
-        return repository.findVehiclesByDepotName(depotName);
+    public VehicleResponseDTO findById(Long id) {
+        return toDTO(getVehicle(id));
     }
 
-    public Vehicle save(Vehicle vehicle) {
-        return repository.save(vehicle);
+    @Transactional
+    public VehicleResponseDTO create(VehicleRequestDTO dto) {
+
+        Depot depot = depotRepository.findAll()
+                .stream()
+                .findFirst()
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("No depot exists"));
+
+        Vehicle vehicle = new Vehicle(
+                dto.name(),
+                dto.capacity(),
+                depot
+        );
+
+        vehicle.setAvailable(
+                dto.available() == null ? true : dto.available()
+        );
+
+        return toDTO(vehicleRepository.save(vehicle));
+    }
+
+    @Transactional
+    public VehicleResponseDTO update(Long id, VehicleRequestDTO dto) {
+
+        Vehicle vehicle = getVehicle(id);
+
+        vehicle.setName(dto.name());
+        vehicle.setCapacity(dto.capacity());
+
+        if (dto.available() != null) {
+            vehicle.setAvailable(dto.available());
+        }
+
+        return toDTO(vehicleRepository.save(vehicle));
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Vehicle vehicle = getVehicle(id);
+        vehicleRepository.delete(vehicle);
+    }
+
+    public List<VehicleResponseDTO> findAvailableVehicles() {
+        return vehicleRepository.findByAvailableTrue()
+                .stream()
+                .map(this::toDTO)
+                .toList();
     }
 
     public int updateAvailability(Long id, boolean available) {
-        return repository.updateAvailability(id, available);
+        int updated = vehicleRepository.updateAvailability(id, available);
+
+        if (updated == 0) {
+            throw new ResourceNotFoundException("Vehicle not found: " + id);
+        }
+
+        return updated;
     }
 
-    public void deleteById(Long id) {
-        repository.deleteById(id);
+    public List<VehicleResponseDTO> findByDepotName(String depotName) {
+        return vehicleRepository.findVehiclesByDepotName(depotName)
+                .stream()
+                .map(this::toDTO)
+                .toList();
     }
 }
