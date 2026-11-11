@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/deliveries")
+@RequestMapping({"/api/deliveries", "/api/v1/deliveries", "/api/v2/deliveries"})
 @Tag(name = "Deliveries", description = "Delivery management")
 public class DeliveryController {
 

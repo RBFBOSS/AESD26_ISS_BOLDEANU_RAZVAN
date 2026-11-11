@@ -1,3 +1,4 @@
+
 package com.example.delivery_system.service;
 
 import com.example.delivery_system.dto.DeliveryRequestDTO;
@@ -7,10 +8,10 @@ import com.example.delivery_system.entity.Delivery;
 import com.example.delivery_system.exception.ResourceNotFoundException;
 import com.example.delivery_system.repository.CustomerRepository;
 import com.example.delivery_system.repository.DeliveryRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -40,7 +41,8 @@ public class DeliveryService {
     private Delivery getDelivery(Long id) {
         return deliveryRepository.findById(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Delivery not found: " + id));
+                        new ResourceNotFoundException(
+                                "Delivery not found: " + id));
     }
 
     public List<DeliveryResponseDTO> findAll() {
@@ -54,6 +56,7 @@ public class DeliveryService {
         return toDTO(getDelivery(id));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'DRIVER')")
     @Transactional
     public DeliveryResponseDTO create(DeliveryRequestDTO dto) {
 
@@ -71,6 +74,7 @@ public class DeliveryService {
         return toDTO(deliveryRepository.save(delivery));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'DRIVER')")
     @Transactional
     public DeliveryResponseDTO update(Long id, DeliveryRequestDTO dto) {
 
@@ -88,6 +92,7 @@ public class DeliveryService {
         return toDTO(deliveryRepository.save(delivery));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     public void delete(Long id) {
         deliveryRepository.delete(getDelivery(id));

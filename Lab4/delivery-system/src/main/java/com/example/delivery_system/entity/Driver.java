@@ -1,3 +1,4 @@
+
 package com.example.delivery_system.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,6 +24,11 @@ public class Driver {
     @OneToOne(mappedBy = "driver")
     @JsonIgnore
     private Vehicle vehicle;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", unique = true)
+    @JsonIgnore
+    private AppUser user;
 
     public Driver() {
     }
@@ -67,5 +73,13 @@ public class Driver {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(AppUser user) {
+        this.user = user;
     }
 }

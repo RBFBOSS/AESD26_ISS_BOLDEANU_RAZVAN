@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c2c55eb2-40f7-4e6a-a7c0-666162f43f41" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/config/AdminBootstrapConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/config/DevSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/config/KeycloakSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/controller/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/dto/AuthResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/dto/CreateDriverAccountDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/dto/LoginRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/dto/RefreshTokenRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/dto/RegisterRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/dto/RegisterResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/entity/AppUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/entity/RefreshToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/repository/AppUserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/repository/RefreshTokenRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/security/MethodSecurityTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/AdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/JwtService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/resources/application-dev.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/resources/application-keycloak.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery-system/src/main/resources/application-prod.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3Homework/library/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3Homework/library/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/aspect/BorrowingValidationAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/aspect/BorrowingValidationAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/controller/BorrowingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/controller/BorrowingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/model/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/policy/BorrowingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/policy/BorrowingPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/policy/BorrowingPolicyConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/policy/BorrowingPolicyConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/repository/BookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/service/BorrowingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3Homework/library/src/main/java/com/example/library/service/BorrowingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3Homework/library/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3Homework/library/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/controller/DeliveryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/entity/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/entity/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/repository/DriverRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/repository/DriverRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/DeliveryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/DeliveryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/DepotService.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/DepotService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/DriverService.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/DriverService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/ScenarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/ScenarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/VehicleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/java/com/example/delivery_system/service/VehicleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-system/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-system/src/main/resources/schema.sql" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="3LyCNscIz9APl222I5pUhoDVhYs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/rfbol/OneDrive/Desktop/Master Razvan/Java2/AESD26_ISS_BOLDEANU_RAZVAN/Lab4&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c2c55eb2-40f7-4e6a-a7c0-666162f43f41" name="Changes" comment="" />
+      <created>1794416884833</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1794416884833</updated>
+    </task>
+    <servers />
+  </component>
+</project>

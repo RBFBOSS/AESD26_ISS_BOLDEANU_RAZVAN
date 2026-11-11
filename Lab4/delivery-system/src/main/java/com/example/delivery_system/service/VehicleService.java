@@ -1,3 +1,4 @@
+
 package com.example.delivery_system.service;
 
 import com.example.delivery_system.dto.VehicleRequestDTO;
@@ -7,6 +8,7 @@ import com.example.delivery_system.entity.Vehicle;
 import com.example.delivery_system.exception.ResourceNotFoundException;
 import com.example.delivery_system.repository.DepotRepository;
 import com.example.delivery_system.repository.VehicleRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +40,8 @@ public class VehicleService {
     private Vehicle getVehicle(Long id) {
         return vehicleRepository.findById(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Vehicle not found: " + id));
+                        new ResourceNotFoundException(
+                                "Vehicle not found: " + id));
     }
 
     public List<VehicleResponseDTO> findAll() {
@@ -52,6 +55,7 @@ public class VehicleService {
         return toDTO(getVehicle(id));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     public VehicleResponseDTO create(VehicleRequestDTO dto) {
 
@@ -74,6 +78,7 @@ public class VehicleService {
         return toDTO(vehicleRepository.save(vehicle));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     public VehicleResponseDTO update(Long id, VehicleRequestDTO dto) {
 
@@ -89,10 +94,10 @@ public class VehicleService {
         return toDTO(vehicleRepository.save(vehicle));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     public void delete(Long id) {
-        Vehicle vehicle = getVehicle(id);
-        vehicleRepository.delete(vehicle);
+        vehicleRepository.delete(getVehicle(id));
     }
 
     public List<VehicleResponseDTO> findAvailableVehicles() {
@@ -102,11 +107,15 @@ public class VehicleService {
                 .toList();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @Transactional
     public int updateAvailability(Long id, boolean available) {
+
         int updated = vehicleRepository.updateAvailability(id, available);
 
         if (updated == 0) {
-            throw new ResourceNotFoundException("Vehicle not found: " + id);
+            throw new ResourceNotFoundException(
+                    "Vehicle not found: " + id);
         }
 
         return updated;

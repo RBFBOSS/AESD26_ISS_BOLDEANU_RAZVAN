@@ -1,3 +1,4 @@
+
 package com.example.delivery_system.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,6 +29,11 @@ public class Customer {
 
     @Column(nullable = false, length = 100)
     private String coordinates;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", unique = true)
+    @JsonIgnore
+    private AppUser user;
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
@@ -92,6 +98,14 @@ public class Customer {
 
     public void setCoordinates(String coordinates) {
         this.coordinates = coordinates;
+    }
+
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(AppUser user) {
+        this.user = user;
     }
 
     public List<Delivery> getDeliveries() {

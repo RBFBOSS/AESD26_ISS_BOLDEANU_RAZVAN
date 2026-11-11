@@ -1,0 +1,96 @@
+package com.example.library.rules
+
+import com.example.library.policy.BorrowingRequest
+import com.example.library.policy.BorrowingDecision
+import com.example.library.model.MemberRole
+import com.example.library.model.BookType
+
+rule "Unavailable book"
+    salience 100
+when
+    $r : BorrowingRequest(book.available == false)
+    $d : BorrowingDecision(resolved == false)
+then
+    $d.reject("Book is unavailable: " + $r.getBook().getTitle());
+    update($d);
+end
+
+rule "Reference books reserved for premium members"
+    salience 90
+when
+    $r : BorrowingRequest(book.available == true, book.type == BookType.REFERENCE, member.role != MemberRole.PREMIUM)
+    $d : BorrowingDecision(resolved == false)
+then
+    $d.reject("Only PREMIUM members can borrow REFERENCE books.");
+    update($d);
+end
+
+rule "Student borrowing limit"
+    salience 50
+when
+    $r : BorrowingRequest(book.available == true, book.type == BookType.REGULAR, member.role == MemberRole.STUDENT, currentCount >= 2)
+    $d : BorrowingDecision(resolved == false)
+then
+    $d.reject("STUDENT borrowing limit is 2 books.");
+    update($d);
+end
+
+rule "Regular borrowing limit"
+    salience 50
+when
+    $r : BorrowingRequest(book.available == true, book.type == BookType.REGULAR, member.role == MemberRole.REGULAR, currentCount >= 3)
+    $d : BorrowingDecision(resolved == false)
+then
+    $d.reject("REGULAR borrowing limit is 3 books.");
+    update($d);
+end
+
+rule "Premium borrowing limit"
+    salience 50
+when
+    $r : BorrowingRequest(book.available == true, member.role == MemberRole.PREMIUM, currentCount >= 5)
+    $d : BorrowingDecision(resolved == false)
+then
+    $d.reject("PREMIUM borrowing limit is 5 books.");
+    update($d);
+end
+
+rule "Premium reference borrowing"
+    salience 20
+when
+    BorrowingRequest(book.available == true, book.type == BookType.REFERENCE, member.role == MemberRole.PREMIUM, currentCount < 5)
+    $d : BorrowingDecision(resolved == false)
+then
+    $d.approve(7);
+    update($d);
+end
+
+rule "Student regular borrowing"
+    salience 20
+when
+    BorrowingRequest(book.available == true, book.type == BookType.REGULAR, member.role == MemberRole.STUDENT, currentCount < 2)
+    $d : BorrowingDecision(resolved == false)
+then
+    $d.approve(14);
+    update($d);
+end
+
+rule "Regular member borrowing"
+    salience 20
+when
+    BorrowingRequest(book.available == true, book.type == BookType.REGULAR, member.role == MemberRole.REGULAR, currentCount < 3)
+    $d : BorrowingDecision(resolved == false)
+then
+    $d.approve(21);
+    update($d);
+end
+
+rule "Premium regular borrowing"
+    salience 20
+when
+    BorrowingRequest(book.available == true, book.type == BookType.REGULAR, member.role == MemberRole.PREMIUM, currentCount < 5)
+    $d : BorrowingDecision(resolved == false)
+then
+    $d.approve(30);
+    update($d);
+end

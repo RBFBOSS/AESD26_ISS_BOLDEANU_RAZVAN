@@ -1,3 +1,4 @@
+
 package com.example.delivery_system.service;
 
 import com.example.delivery_system.dto.ScenarioRequestDTO;
@@ -9,9 +10,11 @@ import com.example.delivery_system.exception.ResourceNotFoundException;
 import com.example.delivery_system.repository.DeliveryRepository;
 import com.example.delivery_system.repository.ScenarioRepository;
 import com.example.delivery_system.repository.VehicleRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -47,7 +50,8 @@ public class ScenarioService {
     private Scenario getScenario(Long id) {
         return scenarioRepository.findById(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Scenario not found: " + id));
+                        new ResourceNotFoundException(
+                                "Scenario not found: " + id));
     }
 
     private Set<Vehicle> getVehicles(Set<Long> ids) {
@@ -76,7 +80,7 @@ public class ScenarioService {
         return deliveries;
     }
 
-    public java.util.List<ScenarioResponseDTO> findAll() {
+    public List<ScenarioResponseDTO> findAll() {
         return scenarioRepository.findAll()
                 .stream()
                 .map(this::toDTO)
@@ -87,6 +91,7 @@ public class ScenarioService {
         return toDTO(getScenario(id));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     public ScenarioResponseDTO create(ScenarioRequestDTO dto) {
 
@@ -98,6 +103,7 @@ public class ScenarioService {
         return toDTO(scenarioRepository.save(scenario));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     public ScenarioResponseDTO update(Long id, ScenarioRequestDTO dto) {
 
@@ -110,6 +116,7 @@ public class ScenarioService {
         return toDTO(scenarioRepository.save(scenario));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     public void delete(Long id) {
         scenarioRepository.delete(getScenario(id));

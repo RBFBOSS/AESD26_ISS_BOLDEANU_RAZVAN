@@ -1,7 +1,10 @@
+
 package com.example.delivery_system.service;
 
 import com.example.delivery_system.entity.Customer;
 import com.example.delivery_system.repository.CustomerRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,10 +31,14 @@ public class CustomerService {
         return repository.findByEmail(email);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @CacheEvict(cacheNames="customerRead", key="#customer.id", allEntries=true)
     public Customer save(Customer customer) {
         return repository.save(customer);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @CacheEvict(cacheNames="customerRead", key="#id")
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
